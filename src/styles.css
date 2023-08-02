@@ -1,4 +1,4 @@
-.input {
+/* .input {
   border: 1px solid red;
   display: flex;
   width: 95%;
@@ -134,10 +134,10 @@
 
 .drag {
   box-shadow: 0 0 20px black;
-} 
+}  */
 
  
-/*  
+  
 .input {
   display: flex;
   width: 95%;
@@ -160,7 +160,7 @@
   outline: none;
 }
 
-.input_submit {
+.input__submit {
   position: absolute;
   width: 50px;
   height: 50px;
@@ -173,6 +173,7 @@
   color: white;
   transition: 0.2s all;
   box-shadow: 0 0 10px black;
+  cursor: pointer;
 }
 
 .input_submit:hover {
@@ -271,4 +272,4 @@
     width: 95%;
     margin-bottom: 10px;
   }
-} */
+} 

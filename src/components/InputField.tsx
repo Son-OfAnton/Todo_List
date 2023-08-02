@@ -2,12 +2,12 @@ import React, { useRef } from 'react';
 import "../styles.css"
 
 interface InputFieldProps {
-  currTodo: string,
-  setCurrTodo: React.Dispatch<React.SetStateAction<string>>;
+  todo: string,
+  setTodo: React.Dispatch<React.SetStateAction<string>>;
   handleAdd: (e: React.FormEvent) => void;
 }
 
-const InputField: React.FC<InputFieldProps> = ({currTodo, setCurrTodo, handleAdd}) => {
+const InputField: React.FC<InputFieldProps> = ({todo, setTodo, handleAdd}) => {
   const handleEnterPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if(e.key === "Enter") {
       handleAdd(e)
@@ -17,17 +17,20 @@ const InputField: React.FC<InputFieldProps> = ({currTodo, setCurrTodo, handleAdd
   const inputRef = useRef<HTMLInputElement>(null)
   
   return (
-    <form className='input' onSubmit={(e) => {
-        handleAdd(e)
+    <form 
+      className='input' 
+      onSubmit={(e) => {
+        handleAdd(e);
         inputRef.current?.blur();
-      }}>
+      }}
+    >
       <input 
-        ref={inputRef}
-        type='input' 
+        type='text' 
         placeholder='Enter a task' 
+        value={todo} 
+        ref={inputRef}
+        onChange={(e) => setTodo(e.target.value)} 
         className='input__box'
-        value={currTodo} 
-        onChange={(e) => setCurrTodo(e.target.value)} 
         onKeyDown={handleEnterPress}
         />
       <button className='input__submit' type='submit'>GO</button>

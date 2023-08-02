@@ -7,8 +7,8 @@ import { Droppable } from 'react-beautiful-dnd';
 interface TodoListProps {
   todos: Todo[];
   setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
-  completedTodos: Todo[];
   setCompletedTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
+  completedTodos: Todo[];
 }
 
 const TodoList: React.FC<TodoListProps> = ({ todos, setTodos, completedTodos, setCompletedTodos }) => {
@@ -22,13 +22,13 @@ const TodoList: React.FC<TodoListProps> = ({ todos, setTodos, completedTodos, se
             {...provided.droppableProps}
           >
             <span className="todos__heading">Active Tasks</span>
-            {completedTodos.map((todo, index) => (
+            {todos.map((todo, index) => (
               <SingleTodo 
                 index={index}
+                todos={todos} 
                 todo={todo} 
-                todos={completedTodos} 
                 key={todo.id} 
-                setTodos={setCompletedTodos} 
+                setTodos={setTodos} 
               />
             ))}
             {provided.placeholder}
@@ -39,18 +39,18 @@ const TodoList: React.FC<TodoListProps> = ({ todos, setTodos, completedTodos, se
       <Droppable droppableId='TodosRemove'>
         {(provided, snapshot) => (
           <div 
-            className={`todos remove ${snapshot.isDraggingOver ? 'dragcomplete' : ''}`}
             ref={provided.innerRef} 
             {...provided.droppableProps}
+            className={`todos ${snapshot.isDraggingOver ? 'dragcomplete' : 'remove'}`}
           >
             <span className="todos__heading">Completed Tasks</span>
-              {todos.map((todo, index) => (
+              {completedTodos.map((todo, index) => (
                 <SingleTodo 
                   index={index}
+                  todos={completedTodos} 
                   todo={todo} 
                   key={todo.id} 
-                  todos={todos} 
-                  setTodos={setTodos} 
+                  setTodos={setCompletedTodos} 
                 />
               ))}
               {provided.placeholder}
