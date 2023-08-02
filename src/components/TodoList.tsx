@@ -11,7 +11,7 @@ interface TodoListProps {
   completedTodos: Todo[];
 }
 
-const TodoList: React.FC<TodoListProps> = ({ todos, setTodos, completedTodos, setCompletedTodos }) => {
+const TodoList: React.FC<TodoListProps> = ({ todos, setTodos}) => {
   return (
     <div className='container'>
       <Droppable droppableId='TodosList'>
